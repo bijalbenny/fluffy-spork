@@ -1,5 +1,5 @@
 
-public class Revision {
+public class EnhancedLoop {
 
 	public static void main(String[] args) {
 		String[] fruits = {"Apple","Orange","Strawberry","Grapes"};
