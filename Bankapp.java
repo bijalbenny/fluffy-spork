@@ -155,6 +155,10 @@ public class BankException {
                                  System.out.println(e.getMessage());
                              }
                     	}
+                        else {
+                    		System.out.println("Account not found\n");
+                    		break;
+                    	}
                     }
                    
                     break;
