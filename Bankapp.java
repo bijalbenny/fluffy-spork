@@ -100,67 +100,49 @@ public class BankException {
                 case 3: // Deposit Amount
                     System.out.println("Enter the account number");
                     searchAccount = sc.nextInt();
-                    for(int i=0;i<noOfCustomers;i++) {
-                    	if(customer[i].accountNumber==searchAccount) {
-                    		try {
-                                System.out.println("Enter the amount to deposit");
-                                int depositAmount = sc.nextInt();
-                                if (depositAmount < 0) {
-                                    throw amountException;
-                                } else {
-                                    for (int i1 = 0; i1 < noOfCustomers; i1++) {
-                                        if (customer[i1].accountNumber == searchAccount) {
-                                            customer[i1].accountBalance = customer[i1].accountBalance + depositAmount;
-                                            customer[i1].getCustomerDetails();
-                                        }
-                                    }
+                    try {
+                        System.out.println("Enter the amount to deposit");
+                        int depositAmount = sc.nextInt();
+                        if (depositAmount < 0) {
+                            throw amountException;
+                        } else {
+                            for (int i = 0; i < noOfCustomers; i++) {
+                                if (customer[i].accountNumber == searchAccount) {
+                                    customer[i].accountBalance = customer[i].accountBalance + depositAmount;
+                                    customer[i].getCustomerDetails();
                                 }
-
-                            } catch (InvalidAmountException e) {
-                                System.out.println(e.getMessage());
                             }
-                    	}
-                    	else {
-                    		System.out.println("Account not found\n");
-                    		break;
-                    	}
+                        }
+
+                    } catch (InvalidAmountException e) {
+                        System.out.println(e.getMessage());
                     }
-                   
                     break;
                 case 4: // Withdraw Amount
                     System.out.println("Enter the account number");
                     searchAccount = sc.nextInt();
-                    for(int i=0;i<noOfCustomers;i++) {
-                    	if(customer[i].accountNumber==searchAccount) {
-                    		 try {
-                                 System.out.println("Enter the amount to withdraw");
-                                 int withdrawAmount = sc.nextInt();
-                                 if (withdrawAmount <= 0) {
-                                     throw amountException;
-                                 } else {
-                                     for (int i1 = 0; i1 < noOfCustomers; i1++) {
-                                         if (customer[i1].accountNumber == searchAccount) {
-                                             if (withdrawAmount > customer[i1].accountBalance) {
-                                                 throw fundsException;
-                                             } else {
-                                                 customer[i1].accountBalance = customer[i1].accountBalance - withdrawAmount;
-                                                 customer[i1].getCustomerDetails();
-                                             }
-                                         }
-                                     }
-                                 }
-                             } catch (InvalidAmountException e) {
-                                 System.out.println(e.getMessage());
-                             } catch (InsufficientFundsException e) {
-                                 System.out.println(e.getMessage());
-                             }
-                    	}
-                        else {
-                    		System.out.println("Account not found\n");
-                    		break;
-                    	}
+                    try {
+                        System.out.println("Enter the amount to withdraw");
+                        int withdrawAmount = sc.nextInt();
+                        if (withdrawAmount <= 0) {
+                            throw amountException;
+                        } else {
+                            for (int i = 0; i < noOfCustomers; i++) {
+                                if (customer[i].accountNumber == searchAccount) {
+                                    if (withdrawAmount > customer[i].accountBalance) {
+                                        throw fundsException;
+                                    } else {
+                                        customer[i].accountBalance = customer[i].accountBalance - withdrawAmount;
+                                        customer[i].getCustomerDetails();
+                                    }
+                                }
+                            }
+                        }
+                    } catch (InvalidAmountException e) {
+                        System.out.println(e.getMessage());
+                    } catch (InsufficientFundsException e) {
+                        System.out.println(e.getMessage());
                     }
-                   
                     break;
                 default:
                     // Invalid choice
