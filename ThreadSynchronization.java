@@ -40,7 +40,7 @@ public static void main(String [] args) {
 	MyThread1 t= new MyThread1(m);
 	
 	MyThread2 t1= new MyThread2(m);
-	t1.setPriority(2);// to set the priority of a set.
+	t1.setPriority(2);// to set the priority of a set.(1 to 10)
 	t.start();
 	t1.start();
 
