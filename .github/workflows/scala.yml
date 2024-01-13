@@ -21,14 +21,31 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
+    # Add logging to check the contents of the working directory after checkout
+    - name: Debug - List files after checkout
+      run: ls -al
+
     - name: Set up JDK 11
       uses: actions/setup-java@v3
       with:
         java-version: '11'
         distribution: 'temurin'
         cache: 'sbt'
+
+    # Add logging to check Java version
+    - name: Debug - Check Java version
+      run: java -version
+
+    # Add logging to check SBT version
+    - name: Debug - Check SBT version
+      run: sbt sbtVersion
+
     - name: Run tests
       run: sbt test
-      # Optional: This step uploads information to the GitHub dependency graph and unblocking Dependabot alerts for the repository
+
+    # Optional: This step uploads information to the GitHub dependency graph
+    # and unblocking Dependabot alerts for the repository
     - name: Upload dependency graph
       uses: scalacenter/sbt-dependency-submission@ab086b50c947c9774b70f39fc7f6e20ca2706c91
+      
